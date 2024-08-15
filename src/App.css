@@ -1,38 +1,177 @@
+body {
+  background-color: #202025;
+  font-family: Arial;
+  font-weight: bold;
+}
+
 .App {
+  display: grid;
+  grid-template-columns: repeat(2, auto); /* Две колонки с автоматической шириной */
+  justify-content: center; /* Выравнивание по горизонтали */
+  gap: 60px; /* Расстояние между блоками */
+  height: 100vh; /* Высота контейнера равна высоте viewport */
+}
+
+.App > div {
+  display: inline-block;
+  max-height: 200px;
+  margin-top: 300px;
+  text-align: center; /* Выравнивание текста по центру */
+}
+
+/*styles for block Settings Block */
+.set-block {
+  padding: 15px;
+  width: 300px;
+  border-radius: 7px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr;
+  grid-gap: 2vh;
+  font-size: 16px;
+  color: #60D2F6;
+  border: 2px solid #60D2F6;
+}
+
+
+/*styles for block Scoreboard Block */
+.scoreboard-block {
+  padding: 15px;
+  width: 230px;
+  border: 2px solid #60D2F6;
+  border-radius: 7px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr;
+  grid-gap: 2vh;
+  font-size: 30px;
+}
+
+.section-inputs {
+  border: 1px solid #60D2F6;
+  border-radius: 7px;
+  padding-top: 25px;
+  padding-bottom: 5px;
+}
+
+.input {
+  width: 120px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  border: 1px solid #60D2F6;
+  border-radius: 3px;
+}
+
+.error-input {
+  width: 120px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  border: 1px solid red;
+  border-radius: 3px;
+  background: #EF9CAD;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+
+/*styles for button set*/
+.set {
+  border: 1px solid #60D2F6;
+  background-color: #60D2F6;
+  border-radius: 7px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 15px;
+  margin: 0 auto;
+  transition: background-color 0.3s, transform 0.3s; /*добавляет плавный переход для изменения цвета фона и масштаба кнопки.*/
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.scoreboard {
+  font-size: 30px;
+  border: 1px solid #60D2F6;
+  border-radius: 7px;
+  color: #60D2F6;
+  display: grid;
+  place-items: center; /* Выравнивание по горизонтали и вертикали */
+  height: 120px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.error-scoreboard {
+  color: red;
+  font-size: 30px;
+  border: 1px solid #60D2F6;
+  border-radius: 7px;
+  display: grid;
+  place-items: center; /* Выравнивание по горизонтали и вертикали */
+  height: 120px;
 }
 
-.App-link {
-  color: #61dafb;
+/* styles for message : "Enter values and press set" */
+.info-message  {
+  color: #60D2F6;
+  font-size: 14px;
+  border: 1px solid #60D2F6;
+  border-radius: 7px;
+  display: grid;
+  place-items: center; /* Выравнивание по горизонтали и вертикали */
+  height: 120px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* styles for message : 'Incorrect value!' */
+.info-message-error  {
+  color: red;
+  font-size: 14px;
+  border: 1px solid #60D2F6;
+  border-radius: 7px;
+  display: grid;
+  place-items: center; /* Выравнивание по горизонтали и вертикали */
+  height: 120px;
 }
+
+/*styles for div buttons */
+.buttons {
+  border: 2px solid #60D2F6;
+  padding: 10px;
+  border-radius:7px;
+  margin-top: 20px;
+}
+
+/*styles for button inc , reset*/
+.inc, .reset {
+  border: 1px solid #60D2F6;
+  background-color: #60D2F6;
+  border-radius: 7px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 15px;
+  transition: background-color 0.3s, transform 0.3s; /*добавляет плавный переход для изменения цвета фона и масштаба кнопки.*/
+}
+
+
+/* :active псевдокласс изменяет цвет фона кнопки на немного темнее и уменьшает её размер, что создаёт эффект нажатия.*/
+.inc:active, .reset:active, .set:active {
+  background-color: #407284; /* немного темнее цвет для эффекта нажатия */
+  transform: scale(0.95); /* немного уменьшаем кнопку для эффекта нажатия */
+  border: 1px solid #407284;
+}
+
+.disable-inc, .disable-reset{
+  border: 1px solid #3E7183;
+  background-color: #3E7183;
+  border-radius: 7px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 15px;
+  color: #202025;
+}
+
+.disable-set {
+  border: 1px solid #3E7183;
+  background-color: #3E7183;
+  border-radius: 7px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 15px;
+  color: #202025;
+  margin: 0 auto;
+}
+
+/*test commit*/
