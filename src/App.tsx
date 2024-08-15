@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 import {Input} from "./components/Input/Input";
+import {Button} from "./components/Button/Button";
 
 
 function App() {
@@ -170,12 +171,14 @@ function App() {
                                         onChange={onStartValueChangeHandler}/>
                 </div>
                 <div className={'buttons'}>
-                    <button
+                    <Button
                         className={isButtonsDisabled || !error ? 'disable-set' : 'set'}
                         onClick={onClickSetHandler}
-                        disabled={isButtonsDisabled}>
+                        disabled={isButtonsDisabled}
+                    >
                         set
-                    </button>
+                    </Button>
+
                 </div>
             </div>
 
@@ -184,19 +187,18 @@ function App() {
                     {error ? error : value}
                 </div>
                 <div className={'buttons'}>
-                    <button className={(isButtonsDisabled || value >= maxValue || isEditing) ? 'disable-inc' : 'inc'}
+                    <Button className={(isButtonsDisabled || value >= maxValue || isEditing) ? 'disable-inc' : 'inc'}
                             onClick={onClickIncHandler}
                             disabled={isButtonsDisabled || value >= maxValue || isEditing}
                     >
                         inc
-                    </button>
-                    <button className={isButtonsDisabled || isEditing ? 'disable-reset' : 'reset'}
+                    </Button>
+                    <Button className={isButtonsDisabled || isEditing ? 'disable-reset' : 'reset'}
                             onClick={onClickResetHandler}
                             disabled={isButtonsDisabled || isEditing}
                     >
                         reset
-                    </button>
-
+                    </Button>
                 </div>
             </div>
         </div>
@@ -236,92 +238,7 @@ export default App;
 
 
 
-// type ButtonPropsType ={
-//     name: string
-//     style?: React.CSSProperties
-//     onClick?: ()=>void
-//     disabled?: boolean
-// }
-//
-// const Button = (p: ButtonPropsType) => {
-//     return (
-//         <>
-//             <button disabled={p.disabled}  onClick={p.onClick} style={p.style} >{p.name}</button>
-//         </>
-//     );
-// };
-//export default Button; /*таой вариант тоже считается универсальной компонентой?*/
 
-
-
-/*Да, ваш вариант компонента `Button` тоже считается универсальной компонентой. Он принимает несколько пропсов, что делает его гибким и переиспользуемым в различных контекстах. Давайте разберем, что делает ваш компонент универсальным:
-
-### Типизация пропсов
-
-```typescript
-type ButtonPropsType = {
-    name: string
-    style?: React.CSSProperties
-    onClick?: () => void
-    disabled?: boolean
-}
-```
-
-- `name`: Строка, которая будет отображаться на кнопке.
-- `style`: Опциональный объект стилей, который можно применить к кнопке.
-- `onClick`: Опциональная функция, которая будет вызываться при нажатии на кнопку.
-- `disabled`: Опциональный булевый флаг, который определяет, должна ли кнопка быть задизейбленной.
-
-### Компонент `Button`
-
-```jsx
-const Button = (p: ButtonPropsType) => {
-    return (
-        <>
-            <button disabled={p.disabled} onClick={p.onClick} style={p.style}>{p.name}</button>
-        </>
-    );
-};
-
-export default Button;
-```
-
-- Компонент принимает объект `p` с типами, определенными в `ButtonPropsType`.
-- Возвращает элемент `<button>` с примененными пропсами:
-  - `disabled={p.disabled}`: Устанавливает атрибут `disabled` в зависимости от значения пропса `disabled`.
-  - `onClick={p.onClick}`: Привязывает функцию `onClick` к событию `onClick` кнопки.
-  - `style={p.style}`: Применяет стили, переданные через проп `style`.
-  - `{p.name}`: Отображает текст кнопки, переданный через проп `name`.
-
-### Использование компонента `Button`
-
-```jsx
-import React from 'react';
-import Button from './Button';
-
-const App = () => {
-    const handleClick = () => {
-        alert('Button clicked!');
-    };
-
-    return (
-        <div>
-            <Button name="Click me" onClick={handleClick} />
-            <Button name="Disabled Button" disabled={true} />
-            <Button name="Styled Button" style={{ backgroundColor: 'blue', color: 'white' }} />
-        </div>
-    );
-};
-
-export default App;
-```
-
-- Вы можете использовать компонент `Button` с различными настройками, передавая нужные пропсы.
-- Это делает компонент `Button` универсальным и удобным для повторного использования в различных частях вашего приложения.
-
-### Заключение
-
-Ваш компонент `Button` является универсальным, так как он принимает несколько пропсов, которые делают его гибким и переиспользуемым. Вы можете легко настраивать его поведение и внешний вид, передавая соответствующие пропсы при использовании.*/
 
 
 
