@@ -85,7 +85,7 @@ body {
 }
 
 .scoreboard {
-  font-size: 30px;
+  font-size: 45px;
   border: 1px solid #60D2F6;
   border-radius: 7px;
   color: #60D2F6;
@@ -96,7 +96,7 @@ body {
 
 .error-scoreboard {
   color: red;
-  font-size: 30px;
+  font-size: 45px;
   border: 1px solid #60D2F6;
   border-radius: 7px;
   display: grid;

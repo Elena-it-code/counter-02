@@ -1,13 +1,13 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 
 
 function App() {
     let [value, setValue] = useState<number>(0);
-    // дополнительный стейт error для хранения сообщения об ошибке.
-    let [error, setError] = useState<string | null>(null);
     let [maxValue, setMaxValue] = useState<number>(5)
     let [startValue, setStartValue] = useState<number>(0)
+    // дополнительный стейт error для хранения сообщения об ошибке.
+    let [error, setError] = useState<string | null>(null);
     // дополнительное состояние, которое будет отслеживать, находятся ли инпуты в процессе редактирования.
     let [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -60,6 +60,49 @@ function App() {
 
     // Добавила состояние isButtonsDisabled, которое определяет, должны ли кнопки быть задизейбленными.
     const isButtonsDisabled = startValue >= maxValue || startValue < 0 || maxValue < 0 ;
+
+
+    // Добавила LocalStorage:
+    // Загрузка startValue из localStorage при монтировании компонента
+    useEffect(() => {
+        let startValueSave = localStorage.getItem('counterStartValue');
+        if (startValueSave !== null) { /*Эта проверка гарантирует, что JSON.parse будет вызван только тогда, когда
+        startValueSave действительно содержит данные, которые нужно распарсить. Если данных нет, состояние не будет
+        изменено, и код избежит ненужных ошибок.*/
+            setStartValue(JSON.parse(startValueSave));
+        }
+    }, []);
+
+    // Загрузка maxValue из localStorage при монтировании компонента
+    useEffect(() => {
+        let maxValueSave = localStorage.getItem('counterMaxValue');
+        if (maxValueSave !== null) {
+            setMaxValue(JSON.parse(maxValueSave));
+        }
+    }, []);
+
+    // Загрузка value из localStorage при монтировании компонента
+    useEffect(() => {
+        let valueSave = localStorage.getItem('counterValue');
+        if (valueSave !== null) {
+            setValue(JSON.parse(valueSave));
+        }
+    }, []);
+
+    // Сохранение startValue в localStorage при его изменении
+    useEffect(() => {
+        localStorage.setItem('counterStartValue', JSON.stringify(startValue));
+    }, [startValue]);
+
+    // Сохранение maxValue в localStorage при его изменении
+    useEffect(() => {
+        localStorage.setItem('counterMaxValue', JSON.stringify(maxValue));
+    }, [maxValue]);
+
+    // Сохранение value в localStorage при его изменении
+    useEffect(() => {
+        localStorage.setItem('counterValue', JSON.stringify(value));
+    }, [value]);
 
 
 
